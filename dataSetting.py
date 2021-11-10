@@ -65,3 +65,25 @@ class Classification_Dataset(Dataset):
         return image, target
 
 dataset_train = Classification_Dataset(df_train, 'train', transform=transforms.ToTensor())
+
+from torchvision import transforms
+
+
+def get_transforms(image_size):
+    global c_mean
+    global c_std
+    transforms_train = transforms.Compose([
+        transforms.Resize(image_size),
+        transforms.RandomRotation(30),
+        transforms.RandomResizedCrop(image_size),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize(c_mean, c_std)])
+
+    transforms_val = transforms.Compose([
+        transforms.Resize(image_size + 30),
+        transforms.CenterCrop(image_size),
+        transforms.ToTensor(),
+        transforms.Normalize(c_mean, c_std)])
+
+    return transforms_train, transforms_val
