@@ -23,4 +23,4 @@ for path in file_list:
 train_df = pd.DataFrame(data_dict)
 train_df.to_csv(os.getcwd()+"/train.csv", mode='w')
 
-
+# asd
