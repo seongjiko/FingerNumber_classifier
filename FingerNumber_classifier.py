@@ -9,7 +9,7 @@ file_list = glob(file_path)
 
 data_dict = {'image_name':[], 'class':[], 'target':[], 'file_path':[]}
 # 학습에 사용하기 위한 넘버링(?)
-target_dict = {'yi_1': 1, 'er_2': 2, 'san_3': 3, 'si_4':4, 'wu_5':5, 'liu_6':6, 'qi_7':7, 'ba_8':8, 'jiu_9':9, 'shi_10': 10}
+target_dict = {'yi_1': 0, 'er_2': 1, 'san_3': 2, 'si_4':3, 'wu_5':4, 'liu_6':5, 'qi_7':6, 'ba_8':7, 'jiu_9':8, 'shi_10': 9}
 
 for path in file_list:
     data_dict['file_path'].append(path) # file_path 항목에 파일 경로 저장
@@ -155,6 +155,7 @@ import torch.optim as optim
 
 from tqdm import tqdm # tqdm은 작업의 진행률을 시각적으로 표시해준다.
 
+# train
 def train_epoch(model, loader, device, criterion, optimizer):
     model.train() # 모델 train 모드로 바꾸기
     train_loss = []
@@ -172,7 +173,65 @@ def train_epoch(model, loader, device, criterion, optimizer):
 
         loss_np = loss.detach().cpu().numpy() # loss값 가져오기 위해 gpu에 있던 데이터 모두 cpu로 옮기기
         train_loss.append(loss_np)
-        bar.set_decription('loss: %.5f' % (loss_np))
+        bar.set_description('loss: %.5f' % (loss_np))
 
     train_loss = np.mean(train_loss) # 한 epoch당 train loss의 평균 구하기
     return train_loss
+
+# Validation
+def val_epoch(model, loader, device, criterion):
+    model.eval() # 모델 evaluate 모드로 바꾸기
+    val_loss = []
+    LOGITS = []
+    PROBS = []
+    TARGETS = []
+
+    with torch.no_grad():
+        for (data, target) in tqdm(loader):
+
+            data, target = data.to(device), target.to(device)
+            logits = model(data)    # 1. forward pass
+            probs = logits.softmax(1)
+
+            LOGITS.append(logits.detach().cpu())
+            PROBS.append(probs.detach().cpu())
+            TARGETS.append(target.detach().cpu())
+
+            loss = criterion(logits, target)    # 2. loss 계산
+            val_loss.append(loss.detach().cpu().numpy())
+
+    val_loss = np.mean(val_loss)
+    LOGITS = torch.cat(LOGITS).numpy()
+    PROBS = torch.cat(PROBS).numpy()
+    TARGETS = torch.cat(TARGETS).numpy()
+
+    # accuracy: 정확도
+    acc = (PROBS.argmax(1) == TARGETS).mean() * 100.
+
+    return val_loss, acc
+# 학습시키기
+def run(model, init_lr, n_epochs):
+    # gpu 사용
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # model을 지정한 장치로 옮기기
+    model = model.to(device)
+
+    # loss function 지정
+    criterion = nn.CrossEntropyLoss()
+
+    # optimizer로 adam 사용
+    optimizer = optim.Adam(model.parameters(), lr = init_lr)
+
+    for epoch in range(1, n_epochs + 1):
+        print(time.ctime(), f'Epoch {epoch}')
+
+        train_loss = train_epoch(model, train_loader, device, criterion, optimizer) # train
+        val_loss, acc = val_epoch(model, valid_loader, device, criterion) # validation
+
+        content = time.ctime() + ' ' + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, train loss: {train_loss:.5f}, valid loss: {(val_loss):.5f), Acc: {(acc):.4f}.}'
+        print(content)
+
+    torch.save(model.state_dict(), 'best_model.pth')
+
+run(model, init_lr=4e-6, n_epochs=15)
