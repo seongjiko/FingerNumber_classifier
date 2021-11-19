@@ -229,7 +229,7 @@ def run(model, init_lr, n_epochs):
         train_loss = train_epoch(model, train_loader, device, criterion, optimizer) # train
         val_loss, acc = val_epoch(model, valid_loader, device, criterion) # validation
 
-        content = time.ctime() + ' ' + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, train loss: {train_loss:.5f}, valid loss: {(val_loss):.5f), Acc: {(acc):.4f}.}'
+        content = time.ctime() + ' ' + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, train loss: {train_loss:.5f}, valid loss: {(val_loss):.5f}, Acc: {(acc):.4f}.'
         print(content)
 
     torch.save(model.state_dict(), 'best_model.pth')
