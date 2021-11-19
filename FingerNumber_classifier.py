@@ -115,11 +115,64 @@ from torch.utils.data import DataLoader
 train_loader = torch.utils.data.DataLoader(dataset_train, batch_size=4, sampler=RandomSampler(dataset_train), num_workers=0)
 valid_loader = torch.utils.data.DataLoader(dataset_val, batch_size=4, num_workers=0)
 
+print('데이터 로더 완료!')
 #### 데이터 준비 파트는 마무리가 되었습니다. 큰 틀을 살펴보면서 정리해보도록 하겠습니다.
-# - `0. 데이터셋 다운받기`: 여러분이 수집한 데이터의 클래스별로 폴더를 구성하여 데이터셋을 준비합니다.
-# - `1. 데이터셋 구성하기`: 저장한 데이터의 정보를 csv 파일로 만듭니다.
-# - `2. 데이터셋 불러오기`: csv 파일을 통해 데이터를 불러와서 train, validation, test로 나눠줍니다.
-# - `3. 학습 시, 데이터셋을 사용할 수 있도록 만들기`
-#     - `3-1. Dataset Class`: pytorch가 dataset을 어떻게 읽을지 알려주는 클래스를 만듭니다. (데이터셋 크기와 지정한 인덱스별로 데이터를 리턴해주는 len, getitem 함수가 포함되어 있습니다.)
-#     - `3-2. Transforms & Augmentation`: 학습을 위해 데이터를 가공합니다.
-#     - `3-3. Data Loaders`: 배치별로 데이터를 묶어줍니다. Training시, 배치단위별로 데이터가 호출됩니다.
+# 0. 데이터셋 다운받기`: 여러분이 수집한 데이터의 클래스별로 폴더를 구성하여 데이터셋을 준비합니다.
+# 1. 데이터셋 구성하기`: 저장한 데이터의 정보를 csv 파일로 만듭니다.
+# 2. 데이터셋 불러오기`: csv 파일을 통해 데이터를 불러와서 train, validation, test로 나눠줍니다.
+# 3. 학습 시, 데이터셋을 사용할 수 있도록 만들기
+#     3-1. Dataset Class`: pytorch가 dataset을 어떻게 읽을지 알려주는 클래스를 만듭니다. (데이터셋 크기와 지정한 인덱스별로 데이터를 리턴해주는 len, getitem 함수가 포함되어 있습니다.)
+#     3-2. Transforms & Augmentation`: 학습을 위해 데이터를 가공합니다.
+#     3-3. Data Loaders`: 배치별로 데이터를 묶어줍니다. Training시, 배치단위별로 데이터가 호출됩니다.
+
+# Model 설정
+from torchvision import models
+from collections import OrderedDict
+import torch.nn as nn
+
+model = models.vgg19(pretrained=True)
+# # Backprop을 수행하지 않도록 parameter들을 동결시키기
+# # 재학습을 위해, 모든 parameters의 gradient를 꺼놓기
+for param in model.parameters():
+    param.requires_grad = False
+
+# 마지막 layer를 과제에 맞게 수정하기
+classifier = nn.Sequential(OrderedDict([
+    ('fc1', nn.Linear(25088, 500)),
+    ('relu', nn.ReLU()),
+    ('fc2', nn.Linear(500, 10))
+]))
+
+model.classifier = classifier
+print('VGG19 모델 셋팅 완료')
+
+# Training
+import numpy as np
+import cv2
+import random
+import time
+import torch.optim as optim
+
+from tqdm import tqdm # tqdm은 작업의 진행률을 시각적으로 표시해준다.
+
+def train_epoch(model, loader, device, criterion, optimizer):
+    model.train() # 모델 train 모드로 바꾸기
+    train_loss = []
+    bar = tqdm(loader)
+
+    for i, (data, target) in enumerate(bar):
+        optimizer.zero_grad() # 최적화된 모든 변수 초기화
+
+        data, target = data.to(device), target.to(device) # 지정한 device로 데이터 옮기기
+        logits = model(data) # 1. forward pass
+
+        loss = criterion(logits, target) # 2. loss계산
+        loss.backward() # 3. backward pass
+        optimizer.step() # 4. gradient descent(파라미터 업데이트)
+
+        loss_np = loss.detach().cpu().numpy() # loss값 가져오기 위해 gpu에 있던 데이터 모두 cpu로 옮기기
+        train_loss.append(loss_np)
+        bar.set_decription('loss: %.5f' % (loss_np))
+
+    train_loss = np.mean(train_loss) # 한 epoch당 train loss의 평균 구하기
+    return train_loss
