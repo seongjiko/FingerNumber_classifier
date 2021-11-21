@@ -6,6 +6,9 @@
   - `이미지 출처: 시사중국어사 네이버 공식 블로그` https://blog.naver.com/chinasisa/221482581302
 
 - 손가락 숫자 사진을 1부터 10까지 각각 30장을 준비하여 이를 데이터셋으로 갖는다.
+  - <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755240-0e1a3570-e740-434a-b3e5-99a1cc9eb99d.png"> <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755325-8dd0e747-12f8-4458-96fc-36a9dde59f0c.png">
+
+
 ## <b>사용 방법
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.py`파일을 <b>같은 경로</b>에 저장하여 코드를 실행합니다.
     - MacBook Air m1노트북, Pycharm 환경 기준 실행시 학습시간은 15에포크 기준 `1시간 40분`정도 소요됩니다.
