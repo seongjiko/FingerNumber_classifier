@@ -9,6 +9,7 @@
 ## <b>설치 방법
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.py`파일을 <b>같은 경로</b>에 저장하여 코드를 실행합니다.
     - MacBook Air m1노트북, Pycharm 환경 기준 실행시 학습시간은 `1시간 40분`정도 소요됩니다.
+    - 사용되는 모듈들은 반드시 설치되어있어야합니다.
   - 압축 파일은 yi(1) 부터 shi(10)까지 각각의 폴더에 30장씩 준비되어있습니다.
   - 압축을 풀 때 dataSet폴더를 생성하여 그 안에 풀어야합니다.
     - ![image](https://user-images.githubusercontent.com/46768743/142754349-61194eb9-87ba-4ab0-9a20-a8bf777c8fce.png)
