@@ -1,27 +1,26 @@
-while True:
-    print("FingerNumber_Classifier")
-    print("[0] 모델 새로 학습하기")
-    print("[1] 학습된 모델로 새로운 사진 분류해보기")
-    print("[any] 종료")
 
-    menu = input("숫자를 입력해주세요: ")
+print("FingerNumber_Classifier")
+print("[0] 모델 새로 학습하기")
+print("[1] 학습된 모델로 새로운 사진 분류해보기")
+print("[any] 종료")
 
-    if menu == '0':
-        print("모델을 새로 학습합니다.")
-        print("15 에포크 기준 정확도는 약 79%입니다.")
-        epochNum = int(input("원하는 에포크 수를 입력해주세요: "))
-        print(f"{epochNum}으로 에포크를 설정하였습니다.")
-        print("모델 학습을 시작합니다.")
+menu = input("숫자를 입력해주세요: ")
 
-    elif menu == '1':
-        print("분류를 진행합니다.")
-        file_path = input("파일의 [절대경로]를 입력해주세요: ")
+if menu == '0':
+    print("모델을 새로 학습합니다.")
+    print("15 에포크 기준 정확도는 약 79%입니다.")
+    epochNum = int(input("원하는 에포크 수를 입력해주세요: "))
+    print(f"{epochNum}으로 에포크를 설정하였습니다.")
+    print("모델 학습을 시작합니다.")
 
-    else:
-        print('프로그램을 종료합니다.')
-        break;
+elif menu == '1':
+    print("분류를 진행합니다.")
+    file_path = input("파일의 [절대경로]를 입력해주세요: ")
 
-if menu == 0:
+else:
+    print('프로그램을 종료합니다.')
+
+if menu == '0':
     # 데이터 셋 구성하기, 경로를 파악한 후
     # 클래스 이름(name), 클래스(class), 그리고 학습을 위한 클래스를 숫자로 나타낸 타겟(target)을 csv파일에 저장
     import os
@@ -109,15 +108,14 @@ if menu == 0:
     # 사용자 모델 트랜스폼
     def get_transforms(image_size):
         transforms_train = transforms.Compose([
-            transforms.RandomRotation(30),
-            transforms.RandomResizedCrop(image_size),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize(c_mean, c_std)
-                                 ])
+            transforms.RandomRotation(30), # 이미지의 다양화를 위해 랜덤으로 +- 30도 가량 회전
+            transforms.RandomResizedCrop(image_size), # 이미지 사이즈 축소
+            transforms.RandomHorizontalFlip(), # 이미지를 랜덤으로 수평하게 뒤집음.
+            transforms.ToTensor(), # 데이터 타입을 텐서로 변경
+            transforms.Normalize(c_mean, c_std) ]) # 정규화
 
-        transforms_val = transforms.Compose([transforms.Resize(image_size + 30),
-                                             transforms.CenterCrop(image_size),
+        transforms_val = transforms.Compose([transforms.Resize(image_size + 30), # 이미지 사이즈 축소
+                                             transforms.CenterCrop(image_size), # 이미지의 가운데 부분을 인자값으로 자름
                                              transforms.ToTensor(),
                                              transforms.Normalize(c_mean, c_std)])
 
@@ -237,7 +235,7 @@ if menu == 0:
     def run(model = model, init_lr = 4e-6, n_epochs = 15):
         # gpu 사용
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+        print(f"현재 장치: {device}")
         # model을 지정한 장치로 옮기기
         model = model.to(device)
 
@@ -262,5 +260,5 @@ if menu == 0:
     print("가장 좋은 성능의 모델 저장 완료!")
     print("학습 종료");
 
-elif menu == 1:
+elif menu == '1':
     pass
