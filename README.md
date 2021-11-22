@@ -20,7 +20,16 @@
     - ![image](https://user-images.githubusercontent.com/46768743/142754349-61194eb9-87ba-4ab0-9a20-a8bf777c8fce.png)
 
 ## <b>사용 방법 `(GPU를 사용할 경우)`
-  
+  - CUDA 를 사용하기 위해서는 NVIDIA GPU가 필요합니다. 따라서 구글 코랩으로 진행합니다.
+  - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.ipynb`파일을 다운로드 받습니다.
+  - 본인의 구글 드라이브(기본경로)에 FingerNumber_classifier_project 폴더를 생성합니다.
+  - FingerNumber_classifier_project폴더에 dataSet 폴더를 생성합니다.
+  - dataSet폴더 안에 다운로드 받은 dataSet.zip을 압축 해제합니다.
+  - 다시 `구글 코랩`으로 돌아옵니다.
+  - 다운로드 받은 `FingerNumber_classifier.ipynb`를 열어줍니다.
+  - 구글 코랩의 상단부에 런타임 -> 런타임 유형 변경 -> 'None' 에서 GPU로 변경합니다.
+  - <img width="446" alt="image" src="https://user-images.githubusercontent.com/46768743/142857000-db20c982-3364-477c-ba89-f8ecfffe595c.png">
+    - 위 그림 처럼 왼쪽 폴더 모양 아이콘을   
   
 ## <b>사용 예제
 - 여건이 된다면 실시간으로 손 모양을 인식하여 즉시 어느 숫자를 가리키는지 출력해주는 것이 최종 목표입니다.
@@ -32,6 +41,6 @@
 
 ## <b>업데이트 내역
 - v 0.1 : 정상적인 학습이 이루어지는 코드 작성완료
-  
+- v 0.2 : GPU사용을 위해 구글 코랩화 완료, 테스트 모델로 최증 검증 코드 추가
 ## 코드 참고사항
   - 이 코드는 영상처리와 딥러닝 과목의 10주차 과제 코드를 참고하여 작성하였습니다. 원본의 출처를 알아내는 대로 즉시 명시하도록 하겠습니다.
