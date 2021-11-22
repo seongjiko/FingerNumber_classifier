@@ -236,4 +236,4 @@ def run(model = model, init_lr = 4e-6, n_epochs = 15):
 
 run(model, init_lr=4e-6, n_epochs=15)
 print("가장 좋은 성능의 모델 저장 완료!")
-print("학습 종료")
+print("학습 종료");

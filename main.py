@@ -23,4 +23,4 @@ while True:
         pass
     else:
         print('프로그램을 종료합니다.')
-        break
+        break;
