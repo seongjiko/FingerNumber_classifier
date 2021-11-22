@@ -29,9 +29,9 @@
   - 다운로드 받은 `FingerNumber_classifier.ipynb`를 열어줍니다.
   - 구글 코랩의 상단부에 런타임 -> 런타임 유형 변경 -> 'None' 에서 GPU로 변경합니다.
   - <img width="446" alt="image" src="https://user-images.githubusercontent.com/46768743/142857000-db20c982-3364-477c-ba89-f8ecfffe595c.png">
-    - 위 그림 처럼 왼쪽 폴더 모양 아이콘을 클릭한 후 2번으로 표시된 아이콘을 누르면 마운트가 진행됩니다.
+  <br> - 위 그림 처럼 왼쪽 폴더 모양 아이콘을 클릭한 후 2번으로 표시된 아이콘을 누르면 마운트가 진행됩니다.
   - <img width="637" alt="image" src="https://user-images.githubusercontent.com/46768743/142857247-61e38577-3dbd-4d37-9abc-82506366e35b.png">
-    - 최종적으로 위와같은 이미지와 동일한 구조가 되어야 합니다.
+  <br> - 최종적으로 위와같은 이미지와 동일한 구조가 되어야 합니다.
   - 코드를 실행합니다. (Ctrl + Enter)
 
   
