@@ -210,7 +210,7 @@ def val_epoch(model, loader, device, criterion):
 
     return val_loss, acc
 # 학습시키기
-def run(model, init_lr, n_epochs):
+def run(model = model, init_lr = 4e-6, n_epochs = 15):
     # gpu 사용
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -235,3 +235,5 @@ def run(model, init_lr, n_epochs):
     torch.save(model.state_dict(), 'best_model.pth')
 
 run(model, init_lr=4e-6, n_epochs=15)
+print("가장 좋은 성능의 모델 저장 완료!")
+print("학습 종료")
