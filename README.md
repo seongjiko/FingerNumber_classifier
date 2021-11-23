@@ -1,5 +1,8 @@
-# <b>FingetNumber_classifier
 
+
+# ✋<b>FingetNumber_classifier ✋
+# <span style="color:yellow">프로젝트 진행에 대한 자세한 사항은 `프로젝트 진행내역.md`에 상세히 서술되어있습니다! 참고바랍니다.</span>
+  
 ## <b>프로젝트 설명
 - 중학교 시절, 중국어 시간에 손가락으로 1부터 10까지 표기하는 방법을 배운 기억이 있다. 최근 대학 수업에서 mnist를 분류하는 코드를 작성했는데, 본인이 직접 데이터를 준비하고 훈련시켜보고 싶어 프로젝트를 진행하게 되었다. 
   <img width="566" alt="image" src="https://user-images.githubusercontent.com/46768743/142754273-66f3c4ec-bf66-4a6d-b553-f92c46081f79.png">
@@ -8,7 +11,7 @@
 - 손가락 숫자 사진을 1부터 10까지 각각 30장을 준비하여 이를 데이터셋으로 갖는다.
   - <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755240-0e1a3570-e740-434a-b3e5-99a1cc9eb99d.png"> <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755325-8dd0e747-12f8-4458-96fc-36a9dde59f0c.png">
 
-## 프로젝트 진행에 대한 자세한 사항은 `프로젝트 진행내역.md`에 상세히 서술되어있습니다! 참고바랍니다.
+
 
 ## <b>사용 방법 `(CPU를 사용할 경우)`
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.py`파일을 <b>같은 경로</b>에 저장하여 코드를 실행합니다.
