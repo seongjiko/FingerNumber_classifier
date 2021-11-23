@@ -8,6 +8,7 @@
 - 손가락 숫자 사진을 1부터 10까지 각각 30장을 준비하여 이를 데이터셋으로 갖는다.
   - <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755240-0e1a3570-e740-434a-b3e5-99a1cc9eb99d.png"> <img width="300" alt="image" src="https://user-images.githubusercontent.com/46768743/142755325-8dd0e747-12f8-4458-96fc-36a9dde59f0c.png">
 
+## 프로젝트 진행에 대한 자세한 사항은 `프로젝트 진행내역.md`에 상세히 서술되어있습니다! 참고바랍니다.
 
 ## <b>사용 방법 `(CPU를 사용할 경우)`
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.py`파일을 <b>같은 경로</b>에 저장하여 코드를 실행합니다.
