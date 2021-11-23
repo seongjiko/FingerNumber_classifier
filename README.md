@@ -24,7 +24,7 @@
     - ![image](https://user-images.githubusercontent.com/46768743/142754349-61194eb9-87ba-4ab0-9a20-a8bf777c8fce.png)
   - `FingerNumber_classifier.py`파일을 실행합니다.
   
-## <b>사용 방법 `(GPU를 사용할 경우)` 📖
+## ~~<b>사용 방법 `(GPU를 사용할 경우)` 📖~~ 일단 CPU버전은 여기까지 진행하며, GPU를 우선으로 개발을 진행한 후 CPU에 맞게 다시 재 구현 할 예정입니다.
   - CUDA 를 사용하기 위해서는 NVIDIA GPU가 필요합니다. 따라서 구글 코랩으로 진행합니다.
     - GPU로 실행시 1 에포크당 대략 12초가 걸리며, 100에포크 기준 20분 정도 소요됩니다.
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.ipynb`파일을 다운로드 받습니다.
