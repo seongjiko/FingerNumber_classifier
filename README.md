@@ -18,7 +18,8 @@
   - 압축 파일은 yi(1) 부터 shi(10)까지 각각의 폴더에 30장씩 준비되어있습니다.
   - 압축을 풀 때 dataSet폴더를 생성하여 그 안에 풀어야합니다.
     - ![image](https://user-images.githubusercontent.com/46768743/142754349-61194eb9-87ba-4ab0-9a20-a8bf777c8fce.png)
-
+  - `FingerNumber_classifier.py`파일을 실행합니다.
+  
 ## <b>사용 방법 `(GPU를 사용할 경우)`
   - CUDA 를 사용하기 위해서는 NVIDIA GPU가 필요합니다. 따라서 구글 코랩으로 진행합니다.
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.ipynb`파일을 다운로드 받습니다.
@@ -32,6 +33,7 @@
   <br> - 위 그림 처럼 왼쪽 폴더 모양 아이콘을 클릭한 후 2번으로 표시된 아이콘을 누르면 마운트가 진행됩니다.
   - <img width="637" alt="image" src="https://user-images.githubusercontent.com/46768743/142857247-61e38577-3dbd-4d37-9abc-82506366e35b.png">
   <br> - 최종적으로 위와같은 이미지와 동일한 구조가 되어야 합니다.
+  - 런타임이 끊길 경우 재 연결 후, 재 마운트를 해야합니다.
   - 코드를 실행합니다. (Ctrl + Enter)
 
   
