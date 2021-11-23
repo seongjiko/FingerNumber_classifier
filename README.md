@@ -22,6 +22,7 @@
   
 ## <b>사용 방법 `(GPU를 사용할 경우)`
   - CUDA 를 사용하기 위해서는 NVIDIA GPU가 필요합니다. 따라서 구글 코랩으로 진행합니다.
+    - GPU로 실행시 1 에포크당 대략 12초가 걸리며, 100에포크 기준 20분 정도 소요됩니다.
   - 업로드 된 `dataSet.zip` 파일과 `FingerNumber_classifier.ipynb`파일을 다운로드 받습니다.
   - 본인의 구글 드라이브(기본경로)에 FingerNumber_classifier_project 폴더를 생성합니다.
   - FingerNumber_classifier_project폴더에 dataSet 폴더를 생성합니다.
